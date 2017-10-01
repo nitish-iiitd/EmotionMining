@@ -2,6 +2,7 @@ from nltk.stem import *
 from nltk.stem.porter import *
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import string
 
 def extractN(filename,n=None):
 	lines = open("../Dataset/we_feel_fine/Phrases/"+filename,"rb").readlines()
@@ -22,13 +23,25 @@ def stemmingAndStopwords(sentences):
 	return stemmed
 
 if __name__ == "__main__":
-	files = ["ANGER_Phrases.txt","FEAR_Phrases.txt","JOY_Phrases.txt","SADNESS_Phrases.txt","SURPRISE_Phrases.txt"]
-	for f in files:
-		sentences = extractN(f,1000)
-		stemmed_sentence = stemmingAndStopwords(sentences)
-		of = open("stemmed_"+f,"a")
-		#total_sentences = len(stemmed_sentence)
-		for sent in stemmed_sentence:
-			of.write(sent+"\n")
-		of.close()
-		#print "stemmedsentence:",stemmed_sentence
+    files = ["ANGER_Phrases.txt","FEAR_Phrases.txt","JOY_Phrases.txt","SADNESS_Phrases.txt","SURPRISE_Phrases.txt"]
+    for f in files:
+        sentences = extractN(f, 1000)
+        processed = list()
+        for line in sentences:
+            # print(line)
+            for c in string.punctuation:
+                line = line.replace(c, "")
+                line.lower()
+            processed.append(line)
+            # print(line)
+        stemmed_sentence = stemmingAndStopwords(processed)
+        print "without removing duplicates: ", len(stemmed_sentence)
+        # Removing duplicates
+        stemmed_unique = list(set(stemmed_sentence))
+        print "after removing duplicates: ", len(stemmed_unique)
+        print("writing to file....  ", f)
+        of = open("stemmed_"+f, "a")
+        for sent in stemmed_unique:
+            of.write(sent+"\n")
+        of.close()
+        print "stemmed set:", stemmed_unique
