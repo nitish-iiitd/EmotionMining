@@ -43,7 +43,7 @@ def removePunctAndLower(sentences):
 	for line in sentences:
 		for c in string.punctuation:
 			line = line.replace(c, "")
-			line.lower()
+			line = line.lower()
 		processed.append(line)
 	return processed
 
