@@ -5,6 +5,10 @@ from nltk.corpus import stopwords
 import string
 import nltk
 import pickle
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 def extractN(filename,n=None):
 	lines = open("../Dataset/we_feel_fine/Phrases/"+filename,"rb").readlines()
