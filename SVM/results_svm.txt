@@ -1,0 +1,9 @@
+On 10k dataset:
+penalty, c, loss: l2 0.5 hinge   accuracy: 0.89665114216
+penalty, c, loss: l2 0.5 squared_hinge   accuracy: 0.89121756487
+penalty, c, loss: l2 1.0 hinge   accuracy: 0.893102683522
+penalty, c, loss: l2 1.0 squared_hinge   accuracy: 0.885007762253
+penalty, c, loss: l2 20 hinge   accuracy: 0.861942781104
+penalty, c, loss: l2 20 squared_hinge   accuracy: 0.8499667332
+accuracy after test data: 0.895332076727
+
